@@ -11,8 +11,6 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
-import cip_app.constants as constants
-
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -25,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'lo%d3tm@u5gn41gk#2192b-7rxp_d599jm=#8*x8n7i!qhxlhu'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = constants.DEBUG
+DEBUG = True
 
 ALLOWED_HOSTS = []
 

@@ -1,11 +1,12 @@
 import datetime
-import cip_app.constants as constants
+from cip.settings import DEBUG as d
 
 def logging(trace):
     # This is to control debug mode is on or off.
     # Some variables are finally static and constants.
-    # They're controlled in one file.
-    debug = constants.DEBUG
+    # They're controlled in one file. They're stored in
+    # settings file in all project.
+    debug = d
 
     # A variable is defined with local datetime that is replaced '.' instead '/'
     file_name = str(datetime.datetime.now().strftime("%x") + ".txt").replace('/', '.')
