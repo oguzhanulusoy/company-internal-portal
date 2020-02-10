@@ -1,6 +1,7 @@
 import datetime
+import cip_app.constants as constants
 
-DEBUG = True
+DEBUG = constants.DEBUG
 
 def logging(trace):
     '''
