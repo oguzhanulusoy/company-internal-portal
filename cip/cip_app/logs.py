@@ -1,22 +1,22 @@
 import datetime
 import cip_app.constants as constants
 
-DEBUG = constants.DEBUG
-
 def logging(trace):
-    '''
-    Dosya adını yerel tarih ile oluşturacağız. Kod tekrarı
-    olmaması için bu aşamada tanımlanır.
-    '''
+    # This is to control debug mode is on or off.
+    # Some variables are finally static and constants.
+    # They're controlled in one file.
+    debug = constants.DEBUG
+
+    # A variable is defined with local datetime that is replaced '.' instead '/'
     file_name = str(datetime.datetime.now().strftime("%x") + ".txt").replace('/', '.')
 
-    '''
-    projenin debug özelliği açık mı, kapalı mı diye kontrol etmemiz gerekli.
-    eğer projenin debug özelliği açık ise asıl işimizi yapmamız gerekir.
-    log dosyası var ise gelen bilgi, o dosyaya yazılır; aksi takdirde
-    yeni bir log dosyası oluşturulur.
-    '''
-    if (DEBUG == True):
+    # If debug is true, we can create trace files, in other say logs.
+    # There are two statements for existing file and non-existing file.
+    # Try section is for existing file. Lines in existing log file is read from text,
+    # they are written in to new text file with new trace text.
+    # Except section is to create new log file.
+    # They are finally closed in finally statement for both cases.
+    if (debug == True):
         try:
             with open(str(file_name), "r+") as log_file:
                 lines_in_log_file = log_file.read()
@@ -27,8 +27,7 @@ def logging(trace):
                 log_file.write(str(trace) + " @ " + str(datetime.datetime.now()) + "\n")
         finally:
             log_file.close()
+    # Otherwise (if debug is false) logging is impossible to write.
     else:
-        otherwise_condition = "debug_notes.txt"
-        with open(str(otherwise_condition), "a") as log_file:
-            log_file.write(str("Debug is false @ " + datetime.date.now()) + "\n")
+        print("Logging is impossible to write.")
 
