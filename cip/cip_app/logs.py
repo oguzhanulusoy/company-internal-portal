@@ -1,15 +1,22 @@
 import datetime
 from cip.settings import DEBUG as d
 
-def logging(trace):
+def create():
+    # A variable is defined with local datetime that is replaced '.' instead '/'
+    file_name = str(datetime.datetime.now().strftime("%x") + ".txt").replace('/', '.')
+
+    # @return: created file name as string
+    return str(file_name)
+
+def write(text):
     # This is to control debug mode is on or off.
     # Some variables are finally static and constants.
     # They're controlled in one file. They're stored in
     # settings file in all project.
     debug = d
 
-    # A variable is defined with local datetime that is replaced '.' instead '/'
-    file_name = str(datetime.datetime.now().strftime("%x") + ".txt").replace('/', '.')
+    # Retrieves file name
+    file_name = create()
 
     # If debug is true, we can create trace files, in other say logs.
     # There are two statements for existing file and non-existing file.
@@ -22,10 +29,10 @@ def logging(trace):
             with open(str(file_name), "r+") as log_file:
                 lines_in_log_file = log_file.read()
                 log_file.seek(0)
-                log_file.write(str(trace) + " @ " + str(datetime.datetime.now()) + "\n" + str(lines_in_log_file))
+                log_file.write(str(text) + " @ " + str(datetime.datetime.now()) + "\n" + str(lines_in_log_file))
         except:
             with open(str(file_name), "a") as log_file:
-                log_file.write(str(trace) + " @ " + str(datetime.datetime.now()) + "\n")
+                log_file.write(str(text) + " @ " + str(datetime.datetime.now()) + "\n")
         finally:
             log_file.close()
     # Otherwise (if debug is false) logging is impossible to write.
