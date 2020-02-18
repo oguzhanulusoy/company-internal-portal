@@ -6,4 +6,6 @@ from .logs import write
 def my_test(request):
     write("hello")
 
+    classmethod.__get__()
+
     return HttpResponse("<html>hey</html>")
